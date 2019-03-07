@@ -8,11 +8,15 @@ ARG COMMIT
 ARG DATE
 ARG URL
 ARG VERSION
+
+MAINTAINER michal.klempa@gmail.com
+
 LABEL org.label-schema.schema-version="1.0" \
     org.label-schema.build-date=$DATE \
     org.label-schema.vendor="Michal Klempa" \
     org.label-schema.name="michalklempa/dart-sass" \
     org.label-schema.description="sass/dart-sass docker image for web development purposes. Runs sass --watch on provided volumes." \
+    org.label-schema.url="https://hub.docker.com/r/michalklempa/dart-sass" \
     org.label-schema.version="$VERSION" \
     org.label-schema.vcs-url=$URL \
     org.label-schema.vcs-branch=$BRANCH \
