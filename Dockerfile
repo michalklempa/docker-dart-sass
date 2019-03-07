@@ -8,11 +8,10 @@ ARG VCS_REF
 ARG VERSION
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name="dart-sass" \
-      org.label-schema.description="sass/dart-sass docker image for web development purposes. Runs sass --watch on provided volumes."
+      org.label-schema.description="sass/dart-sass docker image for web development purposes. Runs sass --watch on provided volumes." \
       org.label-schema.url="https://hub.docker.com/r/michalklempa/dart-sass" \
       org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="e.g. https://github.com/microscaling/microscaling" \
-      org.label-schema.vendor="e.g. ACME Inc" \
+      org.label-schema.vcs-url="https://github.com/michalklempa/docker-dart-sass" \
       org.label-schema.version=$VERSION \
       org.label-schema.schema-version="1.0"
 
