@@ -17,6 +17,7 @@ LABEL org.label-schema.schema-version="1.0" \
     org.label-schema.name="michalklempa/dart-sass" \
     org.label-schema.description="sass/dart-sass docker image for web development purposes. Runs sass --watch on provided volumes." \
     org.label-schema.url="https://hub.docker.com/r/michalklempa/dart-sass" \
+    org.label-schema.docker.cmd="docker run -v $PWD/sass:/sass/ -v $PWD/css:/css/ --init -it michalklempa/dart-sass:latest" \
     org.label-schema.version="$VERSION" \
     org.label-schema.vcs-url=$URL \
     org.label-schema.vcs-branch=$BRANCH \
