@@ -1,6 +1,7 @@
 FROM ubuntu:18.04 as build
-ADD https://github.com/sass/dart-sass/releases/download/1.17.3/dart-sass-1.17.3-linux-x64.tar.gz /opt/
-RUN tar -C /opt/ -xzvf /opt/dart-sass-1.17.3-linux-x64.tar.gz
+ARG UPSTREAM_VERSION=1.17.4
+ADD https://github.com/sass/dart-sass/releases/download/${UPSTREAM_VERSION}/dart-sass-${UPSTREAM_VERSION}-linux-x64.tar.gz /opt/
+RUN tar -C /opt/ -xzvf /opt/dart-sass-${UPSTREAM_VERSION}-linux-x64.tar.gz
 
 FROM ubuntu:18.04 as final
 ARG BRANCH
