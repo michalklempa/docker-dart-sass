@@ -1,10 +1,8 @@
 FROM alpine:3.9 as build
-#ADD https://github.com/sass/dart-sass/releases/download/1.17.2/dart-sass-1.17.2-linux-ia32.tar.gz /opt/
-#RUN tar -C /opt/ -xzvf /opt/dart-sass-1.17.2-linux-ia32.tar.gz
-ADD https://github.com/sass/dart-sass/releases/download/1.26.10/dart-sass-1.26.10-linux-x64.tar.gz /opt/
-RUN tar -C /opt/ -xzvf /opt/dart-sass-1.26.10-linux-x64.tar.gz
+ARG UPSTREAM_VERSION=1.26.10
+ADD https://github.com/sass/dart-sass/releases/download/${UPSTREAM_VERSION}/dart-sass-${UPSTREAM_VERSION}-linux-x64.tar.gz /opt/
+RUN tar -C /opt/ -xzvf /opt/dart-sass-${UPSTREAM_VERSION}-linux-x64.tar.gz
 
-#FROM ubuntu:18.04 as final
 FROM alpine:3.9 as final
 ARG BRANCH
 ARG COMMIT
@@ -20,15 +18,11 @@ LABEL org.label-schema.schema-version="1.0" \
     org.label-schema.name="michalklempa/dart-sass" \
     org.label-schema.description="sass/dart-sass docker image for web development purposes. Runs sass --watch on provided volumes." \
     org.label-schema.url="https://hub.docker.com/r/michalklempa/dart-sass" \
+    org.label-schema.docker.cmd="docker run -v $PWD/sass:/sass/ -v $PWD/css:/css/ --init -it michalklempa/dart-sass:latest" \
     org.label-schema.version="$VERSION" \
     org.label-schema.vcs-url=$URL \
     org.label-schema.vcs-branch=$BRANCH \
     org.label-schema.vcs-ref=$COMMIT
-
-
-#RUN dpkg --add-architecture i386
-#RUN apt-get update
-#RUN apt-get -y install libc6-i386
 
 COPY --from=build /opt/dart-sass /opt/dart-sass
 
