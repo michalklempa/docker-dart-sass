@@ -1,9 +1,9 @@
-FROM alpine:3.9 as build
+FROM debian:buster-slim as build
 ARG UPSTREAM_VERSION=1.26.10
 ADD https://github.com/sass/dart-sass/releases/download/${UPSTREAM_VERSION}/dart-sass-${UPSTREAM_VERSION}-linux-x64.tar.gz /opt/
 RUN tar -C /opt/ -xzvf /opt/dart-sass-${UPSTREAM_VERSION}-linux-x64.tar.gz
 
-FROM alpine:3.9 as final
+FROM debian:buster-slim as final
 ARG BRANCH
 ARG COMMIT
 ARG DATE
@@ -23,6 +23,11 @@ LABEL org.label-schema.schema-version="1.0" \
     org.label-schema.vcs-url=$URL \
     org.label-schema.vcs-branch=$BRANCH \
     org.label-schema.vcs-ref=$COMMIT
+
+ENV TINI_VERSION v0.19.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+ENTRYPOINT ["/tini", "--"]
 
 COPY --from=build /opt/dart-sass /opt/dart-sass
 
