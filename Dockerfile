@@ -1,8 +1,11 @@
-FROM ubuntu:18.04 as build
-ADD https://github.com/sass/dart-sass/releases/download/1.17.2/dart-sass-1.17.2-linux-ia32.tar.gz /opt/
-RUN tar -C /opt/ -xzvf /opt/dart-sass-1.17.2-linux-ia32.tar.gz
+FROM alpine:3.9 as build
+#ADD https://github.com/sass/dart-sass/releases/download/1.17.2/dart-sass-1.17.2-linux-ia32.tar.gz /opt/
+#RUN tar -C /opt/ -xzvf /opt/dart-sass-1.17.2-linux-ia32.tar.gz
+ADD https://github.com/sass/dart-sass/releases/download/1.26.10/dart-sass-1.26.10-linux-x64.tar.gz /opt/
+RUN tar -C /opt/ -xzvf /opt/dart-sass-1.26.10-linux-x64.tar.gz
 
-FROM ubuntu:18.04 as final
+#FROM ubuntu:18.04 as final
+FROM alpine:3.9 as final
 ARG BRANCH
 ARG COMMIT
 ARG DATE
@@ -23,9 +26,9 @@ LABEL org.label-schema.schema-version="1.0" \
     org.label-schema.vcs-ref=$COMMIT
 
 
-RUN dpkg --add-architecture i386
-RUN apt-get update
-RUN apt-get -y install libc6-i386
+#RUN dpkg --add-architecture i386
+#RUN apt-get update
+#RUN apt-get -y install libc6-i386
 
 COPY --from=build /opt/dart-sass /opt/dart-sass
 
