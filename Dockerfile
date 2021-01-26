@@ -1,5 +1,7 @@
-FROM debian:buster-slim as build
 ARG UPSTREAM_VERSION=1.32.5
+
+FROM debian:buster-slim as build
+ARG UPSTREAM_VERSION
 ADD https://github.com/sass/dart-sass/releases/download/${UPSTREAM_VERSION}/dart-sass-${UPSTREAM_VERSION}-linux-x64.tar.gz /opt/
 RUN tar -C /opt/ -xzvf /opt/dart-sass-${UPSTREAM_VERSION}-linux-x64.tar.gz
 
