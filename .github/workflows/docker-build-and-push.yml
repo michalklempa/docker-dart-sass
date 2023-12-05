@@ -19,6 +19,11 @@ jobs:
     - name: Build Docker Image
       run: docker build -t michalklempa/dart-sass:${{ github.ref_name }} .
 
+    - name: Tag as Latest Docker Image
+      run: docker michalklempa/dart-sass:${{ github.ref_name }} michalklempa/dart-sass:latest
+
     - name: Push Docker Image
       run: docker push michalklempa/dart-sass:${{ github.ref_name }}
 
+    - name: Push Latest Docker Image
+      run: docker push michalklempa/dart-sass:latest
