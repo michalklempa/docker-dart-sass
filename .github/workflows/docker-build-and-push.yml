@@ -20,5 +20,5 @@ jobs:
       run: docker build -t michalklempa/dart-sass:${{ github.ref_name }} .
 
     - name: Push Docker Image
-      run: docker push your-image-name:${{ github.ref_name }}
+      run: docker push michalklempa/dart-sass:${{ github.ref_name }}
 
