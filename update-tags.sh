@@ -9,5 +9,5 @@ git config --global user.email 'michal.klempa@gmail.com'
 git add Dockerfile
 git commit -m"Upstream version bump to ${VERSION}"
 git tag -f "${VERSION}"
-git push --tags
 git push
+git push --tags
