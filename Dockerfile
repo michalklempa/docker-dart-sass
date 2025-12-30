@@ -1,4 +1,4 @@
-ARG UPSTREAM_VERSION=null
+ARG UPSTREAM_VERSION=1.97.1
 
 FROM debian:bullseye-slim as build
 ARG UPSTREAM_VERSION
