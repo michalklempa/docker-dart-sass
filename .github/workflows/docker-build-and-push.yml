@@ -14,17 +14,21 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
+    - name: Read version from VERSION file
+      id: version
+      run: echo "VERSION=$(cat VERSION)" >> $GITHUB_OUTPUT
+
     - name: Login to Docker Hub
       run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Build Docker Image
-      run: docker build -t michalklempa/dart-sass:${{ github.ref_name }} .
+      run: docker build --build-arg UPSTREAM_VERSION=${{ steps.version.outputs.VERSION }} -t michalklempa/dart-sass:${{ steps.version.outputs.VERSION }} .
 
     - name: Tag as Latest Docker Image
-      run: docker tag michalklempa/dart-sass:${{ github.ref_name }} michalklempa/dart-sass:latest
+      run: docker tag michalklempa/dart-sass:${{ steps.version.outputs.VERSION }} michalklempa/dart-sass:latest
 
     - name: Push Docker Image
-      run: docker push michalklempa/dart-sass:${{ github.ref_name }}
+      run: docker push michalklempa/dart-sass:${{ steps.version.outputs.VERSION }}
 
     - name: Push Latest Docker Image
       run: docker push michalklempa/dart-sass:latest
