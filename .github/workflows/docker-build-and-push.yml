@@ -1,10 +1,9 @@
 name: Docker Build and Push
 
 on:
-  - push:
-      tags:
-        - '*'
-  - workflow_dispatch:
+  push:
+    tags:
+      - '*'
 
 jobs:
   build-and-push:
